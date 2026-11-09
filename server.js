@@ -1,6 +1,24 @@
-const express = require('express');
+5const express = require('express');
 const cors = require('cors');
 const pool = require('./db');
+// Auto-create database + table on startup
+(async () => {
+  try {
+    await pool.query(`CREATE DATABASE IF NOT EXISTS smartbi`);
+    await pool.query(`USE smartbi`);
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS waitlist (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        phone VARCHAR(20) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    console.log("Database smartbi + waitlist table ready ✅");
+  } catch (e) {
+    console.log("Setup error:", e.message);
+  }
+})();
 const app = express();
 app.use(cors());
 app.use(express.json());
