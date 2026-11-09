@@ -4,7 +4,7 @@ const db = mysql.createPool({
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
-  database: process.env.DB_NAME || 'sky',
+  database: process.env.DB_NAME || 'smartbi',
   ssl: { rejectUnauthorized: false }
 });
 module.exports = db;
