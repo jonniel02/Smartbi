@@ -1,4 +1,4 @@
-5const express = require('express');
+const express = require('express');
 const cors = require('cors');
 const pool = require('./db');
 // Auto-create database + table on startup
