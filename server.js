@@ -36,7 +36,7 @@ app.post('/api/waitlist', async (req, res) => {
     await pool.query("INSERT INTO waitlist (name, phone) VALUES (?, ?)", [name, phone]);
     res.json({success: true, message: "Added to waitlist"});
   } catch (err) {
-    ‎    console.log("Setup error FULL:", err.message, "| CODE:", ert.code, "| ERRNO:", err.errno);
+    ‎    console.log("Setup error FULL:", err.message, "| CODE:", err.code, "| ERRNO:", err.errno);
     // This line na the magic - e return error, e NO crash server
     res.status(500).json({success: false, error: err.message});
   }
